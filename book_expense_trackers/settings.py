@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'books.middleware.session_timeout.InactivityTimeoutMiddleware',  # Add your custom middleware
 ]
 
 ROOT_URLCONF = 'book_expense_trackers.urls'
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'book_expense_trackers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'books.sqlite',
     }
 }
 
@@ -118,8 +119,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect after successful login
+LOGIN_URL = '/login/'  # Change to your custom login URL
+LOGIN_REDIRECT_URL = '/dashboard/'  # Where to redirect after login
+LOGOUT_REDIRECT_URL = '/login/'  # Where to redirect after logout
+
+
+SESSION_COOKIE_AGE = 300  # 5 minutes
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Optional: Keep session active across browser restarts
+SESSION_SAVE_EVERY_REQUEST = True  # Update session expiry on every request

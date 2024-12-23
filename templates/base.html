@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Book Expense app{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'books/style.css' %}">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Rumi Press</h1>
+  </header>
+
+  <!-- Content Wrapper for Sidebar + Main -->
+  <div class="content-wrapper">
+    <!-- Sidebar (Aside) -->
+    <aside>
+{#        <div class="sidebar">#}
+            <!-- Top Navigation -->
+            <div class="sidebar-top">
+                <h2>Navigation</h2>
+                <br>
+                <ul class="sidebar-nav">
+                    <li><a href="{% url 'dashboard' %}" class="sidebar-link">Dashboard</a></li>
+                    <li><a href="{% url 'books' %}" class="sidebar-link">Books List</a></li>
+                </ul>
+            </div>
+    
+            <!-- Logout Button at Bottom -->
+            <div class="sidebar-bottom">
+                <ul class="sidebar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="logout-btn"><a href="{% url 'logout' %}" class="sidebar-link">Logout</a></li>
+                    {% else %}
+                        <li class="login-btn"><a href="{% url 'login' %}" class="sidebar-link">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+{#        </div>#}
+    </aside>
+  
+    <!-- Main Content Block -->
+    <main>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+      {% block content %}
+        
+      {% endblock content %}
+    </main>
+  </div>
+
+  <!-- Footer -->
+ <footer>
+    <p>&copy; 2024 Diego Palacios. All rights reserved.</p>
+    <p>
+        <a href="/privacy-policy">Privacy Policy</a> | 
+        <a href="/terms-of-service">Terms of Service</a>
+    </p>
+</footer>
+<script>
+    const sessionTimeout = 300 * 1000; // 1 hour in milliseconds
+    const warningTime = 45 * 1000; // 5 minutes before timeout
+
+    // Warn user 5 minutes before session expiry
+    setTimeout(() => {
+        alert("Your session is about to expire due to inactivity. Please save your work.");
+    }, sessionTimeout - warningTime);
+
+    // Redirect to logout after session expiry
+    setTimeout(() => {
+        window.location.href = "{% url 'logout' %}"; // Redirect to logout URL
+    }, sessionTimeout);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Body and Layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FAFCFE; /* Light Off-White */
+    color: #2D4059; /* Deep Navy Blue */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #B2C8DF; /* Muted Sky Blue */
+    color: #3A4750; /* Charcoal Gray */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 50px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #B2C8DF;
+    color: #3A4750;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-size: 0.875rem; /* Small text */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    margin-top: 60px; /* Header height */
+    margin-bottom: 40px; /* Footer height */
+    overflow: hidden;
+}
+
+/* Sidebar */
+aside {
+    width: 160px;
+    background-color: #EAF2F8; /* Soft Pastel Blue */
+    padding: 20px 10px 40px 10px;
+    border-right: 1px solid #BDC3C7;
+    position: fixed;
+    top: 60px; /* Below header */
+    bottom: 0; /* Extend to bottom */
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+aside:hover {
+    background-color: #D5E3EB; /* Slightly darker pastel blue */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Sidebar Links */
+.sidebar h2 {
+    font-size: 1.2rem;
+    color: #2D4059; /* Navy Blue */
+    margin-bottom: 15px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+    color: #2D4059;
+    font-size: 1rem;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-nav a:hover {
+    background-color: #82A4C8;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+/* Hover Underline Animation */
+.sidebar-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #6D9DC5;
+    transition: width 0.3s ease;
+}
+
+.sidebar-nav a:hover::before {
+    width: 100%;
+}
+
+/* Active Link */
+.sidebar-nav a.active {
+    background-color: #6D9DC5;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    margin-left: 160px; /* Sidebar width */
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    background-color: #FAFCFE;
+}
+
+/* Page Title */
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3A4750;
+}
+
+.title h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+/* Table Container */
+.table-container {
+    max-width: 100%;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    border: 1px solid #BDC3C7;
+    table-layout: fixed;
+}
+
+thead {
+    background-color: #6D9DC5;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+th, td {
+    padding: 10px 12px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #BDC3C7;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #F4F8FB;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #EAF2F8;
+}
+
+tbody tr:hover {
+    background-color: #D5E3EB;
+    cursor: pointer;
+}
+
+tfoot {
+    background-color: #D5E3EB;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    aside {
+        width: 180px;
+    }
+
+    main {
+        margin-left: 180px;
+        padding: 15px;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    th, td {
+        padding: 6px 8px;
+    }
+
+    .title h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    aside {
+        width: 150px;
+    }
+
+    main {
+        margin-left: 150px;
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    .title h2 {
+        font-size: 1.25rem;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    footer {
+        height: 50px;
+        font-size: 0.75rem;
+    }
+}
+
+
+.book-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Button1 Style (Same as Edit Button) */
+.button1 {
+    background-color: #82A4C8; /* Soft Blue */
+    color: #FFFFFF;
+    padding: 6px 10px; /* Compact padding */
+    font-size: 0.75rem; /* Compact font size */
+    font-weight: 600;
+    border: none;
+    border-radius: 3px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Remove underline for anchor-like appearance */
+    display: inline-block; /* Ensures proper alignment */
+}
+
+/* Hover Effect */
+.button1:hover {
+    background-color: #6D9DC5; /* Slightly darker blue */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Focus State for Accessibility */
+.button1:focus {
+    outline: 2px solid #6D9DC5; /* Highlight focus with a blue outline */
+    outline-offset: 2px;
+}
+
+/* Button Styles */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px; /* Adjust spacing between buttons for smaller size */
+}
+
+.action-buttons a, .action-buttons button {
+    text-decoration: none;
+    padding: 6px 10px; /* Reduced padding for smaller buttons */
+    font-size: 0.75rem; /* Smaller text size */
+    font-weight: 600;
+    border-radius: 3px; /* Smaller radius for a compact look */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Edit Button */
+.action-buttons a.edit {
+    background-color: #82A4C8; /* Soft Blue */
+    color: #FFFFFF;
+}
+
+.action-buttons a.edit:hover {
+    background-color: #6D9DC5; /* Slightly darker blue */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Delete Button */
+.action-buttons button.delete {
+    background-color: #F67280; /* Soft Red */
+    color: #FFFFFF;
+}
+
+.action-buttons button.delete:hover {
+    background-color: #E46170; /* Slightly darker red */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Focus States for Accessibility */
+.action-buttons a:focus, .action-buttons button:focus {
+    outline: 2px solid #6D9DC5; /* Highlight focus with a blue outline */
+    outline-offset: 2px;
+}
+
+
+/* Button Base Styles */
+.sidebar-nav .logout-btn a,
+.sidebar-nav .login-btn a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    font-size: 1rem; /* Standard font size */
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+/* Logout Button Styles */
+.sidebar-nav .logout-btn a {
+    background-color: #F67280; /* Soft Red */
+    color: #FFFFFF; /* White Text */
+}
+
+.sidebar-nav .logout-btn a:hover {
+    background-color: #E46170; /* Slightly darker red */
+    transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Login Button Styles */
+.sidebar-nav .login-btn a {
+    background-color: #82A4C8; /* Soft Blue */
+    color: #FFFFFF; /* White Text */
+}
+
+.sidebar-nav .login-btn a:hover {
+    background-color: #6D9DC5; /* Slightly darker blue */
+    transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Focus State for Accessibility */
+.sidebar-nav .logout-btn a:focus,
+.sidebar-nav .login-btn a:focus {
+    outline: 3px solid #6D9DC5; /* Blue outline for focus */
+    outline-offset: 2px;
+}
+
+
+
+/* Login Container */
+.login-container {
+    background-image: url("images/out.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Adds a blurred background */
+}
+
+/* Login Box */
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    color: white;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.login-box p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+/* Input Fields */
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.show-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white;
+    opacity: 0.7;
+}
+
+/* Button Styles */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255, 165, 123, 0.9);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: rgba(255, 165, 123, 1);
+}
+
+/* Options (Checkbox and Links) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.options a {
+    color: white;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}

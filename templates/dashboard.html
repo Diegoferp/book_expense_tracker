@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    Dashboard - Books Expense report
+{% endblock title %}
+
+{% block content %}
+    <div class="title">
+        <h2>Welcome to your book management program</h2>
+        <div class="table-container">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                 <tr>
+                     <td class="table-title" colspan="3">Books by category</td>
+                 </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>Quantity</td>
+                    <td>Total cost</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for stat in category_stats %}
+                    <tr>
+                        <!-- Use 'category_display' instead of 'category' -->
+                        <td>{{ stat.category_display }}</td>
+                        <td>{{ stat.book_count }}</td>
+                        <!-- Apply floatformat:2 to display two decimal places -->
+                        <td>${{ stat.total_expense|floatformat:2 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No data available.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>{{ overall_total_books }}</strong></td>
+                        <td><strong>${{ overall_total_expense|floatformat:2 }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
